@@ -1,101 +1,99 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      newItem: "",
-      list: [],
-    };
-  }
+const App = () => <TodoApp />;
 
-  /* this is Add item function */
-  addItem(todoValue) {
-    if (todoValue !== "") {
-      const newItem = {
-        id: Date.now(),
-        value: todoValue,
-        isDone: false,
-      };
-      const list = [...this.state.list];
-      list.push(newItem);
+const TodoApp = () => {
+  const [messageList, setMessageList] = useState(["Novel", "Code-Comments", "Deployment"]);
 
-      this.setState({
-        // update state
-        list: list,
-        newItem: "",
-      });
-    }
-  }
+  const addTodo = (message) => {
+    setMessageList([...messageList, message]);
+  };
 
-  /* This is Delete Item function*/
-  deleteItem(id) {
-    const list = [...this.state.list]; // append to list
-    const updated_list = list.filter((item) => item.id !== id); // remove item which match with id
-    this.setState({
-      list: updated_list,
-    });
-  }
+  const deleteTodo = (message) => {
+    let deleteMessageIndex = messageList.indexOf(message);
+    setMessageList([
+      ...messageList.slice(0, deleteMessageIndex),
+      ...messageList.slice(deleteMessageIndex + 1)
+    ]);
+  };
 
-  // this function used to get new item
-  updateInput(input) {
-    this.setState({ newItem: input });
-  }
+  return (
+    <div id="app">
+      <TodoHeader />
+      <TodoForm addTodo={addTodo} /> <br /> 
+      <TodoList messageList={messageList} deleteTodo={deleteTodo} />
+      <Footer />
+    </div>
+  );
+};
 
-  // Render complete html code
-  render() {
-    return (
-      <div>
-        <img src={logo} width="200" height="200" alt="logo" className="logo" />
-        <h1 className="app-title"> Ritu Verma's Todo App</h1>
-        
-        <br />
-        <div className="container">
-          Add Your Todo Iteam Here..
-          <br></br>
-          <input
-            type="text"
-            className="input-text"
-            placeholder="Let Add todo Iteam "
-            value={this.state.newItem}
-            onChange={(e) => this.updateInput(e.target.value)}
-          />
-          <button
-            className="add-btn"
-            onClick={() => this.addItem(this.state.newItem)}
-            disabled={!this.state.newItem.length}
-          >
-           <b> Add Todo</b>
-          </button>
-          <div className="list">
-            <ul>
-              {this.state.list.map((item) => {
-                return (
-                  <li key={item.id}>
-                    <input
-                      type="checkbox"
-                      checked={item.isDone}
-                      onChange={() => {}}
-                    />
-                    {item.value}
-                    <button
-                      className="btn"
-                      onClick={() => this.deleteItem(item.id)}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+const TodoHeader = () => (
+  <div id="header">
+    <h1>Todo List</h1>
+  </div>
+);
 
-// export Default app
+const TodoForm = ({ addTodo }) => {
+  const [input, setInput] = useState("");
+
+  const changeHandler = (event) => {
+    setInput(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    addTodo(input);
+    setInput("");
+  };
+
+  return (
+    <div id="form">
+      <input
+        id="form__input"
+        type="text"
+        value={input}
+        onChange={changeHandler}
+        placeholder='Add todo...'
+      />
+      <button id="form__submit" onClick={submitHandler}>
+        Add Todo
+      </button>
+    </div>
+  );
+};
+
+const TodoList = ({ messageList, deleteTodo }) => (
+  <ol id="todolist">
+    {messageList.map((message, index) => (
+      <Todo message={message} deleteTodo={deleteTodo} key={index} />
+    ))}
+  </ol>
+);
+
+const Todo = ({ message, deleteTodo }) => {
+  const handleSubmit = (event) => {
+    deleteTodo(message);
+  };
+
+  return (
+    <li id="todo">
+      <span id="todo__label">{message + "  "}</span>
+      <button id="todo__delete" onClick={handleSubmit}>
+        Delete
+      </button>
+    </li>
+  );
+};
+
+const Footer = () => (
+  <div id="footer">
+    <a
+      href="https://github.com/R-holmes10"
+    
+    >
+      Github: Ritu Verma
+    </a>
+  </div>
+);
+
 export default App;
