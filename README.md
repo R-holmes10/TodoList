@@ -4,7 +4,7 @@
   <img src="https://cdn-icons-png.flaticon.com/128/8841/8841503.png" width="100"/>
 </div>
 <div align="center">
-<h2>Hey there! <h2>
+<h2>Hey! <h2>
   <p><i>Ritu Verma</i> here !</p> 
 </div>
   
@@ -12,8 +12,8 @@
   <a href="https://www.linkedin.com/in/ritu-verma-52a105228/">
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
   </a>
-  <a href="https://youtu.be/">
-    <img src="https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Youtube Badge"/>
+  <a href="https://www.loom.com/share/ff69c9879d8e4f77b028016795ceb654">
+  <img src="https://img.shields.io/badge/Loom-625DF5.svg?style=for-the-badge&logo=Loom&logoColor=white" alt="Loom Badge"/>
   </a>
   <a href="#">
     <img src="https://img.shields.io/badge/Twitter-blue?style=for-the-badge&logo=twitter&logoColor=white" alt="Twitter Badge"/>
@@ -25,7 +25,7 @@
 Clone the repository on your local machine with the command below in your terminal, and cd into the **my-app**
 
 ```bash
-https://github.com/R-holmes10/
+https://github.com/R-holmes10/TodoList.git
 
 cd my-app
 ```
@@ -45,7 +45,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
   
   
   <h2>React Todo App</h2>
-  <a href =""/>
+  <a href ="https://todoapp-react-1xo9.onrender.com"/>
   Live Here
   </a>
  <br>
